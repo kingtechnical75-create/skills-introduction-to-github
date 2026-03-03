@@ -108,3 +108,49 @@ input[type="text"],input[type="number"]{
   .stat-grid{grid-template-columns:1fr}
   .topbar{flex-wrap:wrap;gap:8px}
 }
+/* ===== Premium Running Mode Patch ===== */
+.timer-card{
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease, background .35s ease;
+}
+
+.timer-card.running{
+  transform: translateY(-2px) scale(1.01);
+  border-color: rgba(255, 204, 77, 0.55);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.04)),
+    radial-gradient(circle at 20% 20%, rgba(139,45,255,.18), transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(255,204,77,.16), transparent 45%);
+  box-shadow:
+    0 0 24px rgba(255, 204, 77, .45),
+    0 0 54px rgba(139, 45, 255, .35),
+    0 20px 60px rgba(0,0,0,.45);
+}
+
+.timer-card.running .timer-text{
+  text-shadow:
+    0 0 10px rgba(255,204,77,.85),
+    0 0 22px rgba(255,204,77,.55),
+    0 0 38px rgba(139,45,255,.35);
+}
+
+.timer-card.running .progress-ring{
+  stroke: #ffd86b;
+  filter: drop-shadow(0 0 12px rgba(255,204,77,.95));
+}
+
+.timer-card.running .session-state{
+  color: #ffe08a;
+  letter-spacing: .4px;
+  font-weight: 700;
+}
+
+/* subtle breathing glow */
+@keyframes premiumPulse {
+  0%   { box-shadow: 0 0 20px rgba(255,204,77,.35), 0 0 40px rgba(139,45,255,.25), 0 16px 45px rgba(0,0,0,.4); }
+  50%  { box-shadow: 0 0 34px rgba(255,204,77,.5),  0 0 64px rgba(139,45,255,.4),  0 20px 65px rgba(0,0,0,.5); }
+  100% { box-shadow: 0 0 20px rgba(255,204,77,.35), 0 0 40px rgba(139,45,255,.25), 0 16px 45px rgba(0,0,0,.4); }
+}
+
+.timer-card.running{
+  animation: premiumPulse 2.2s ease-in-out infinite;
+}
