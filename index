@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#220033" />
+  <title>Promodoro</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-wallpaper"></div>
+
+  <header class="topbar glass">
+    <div class="brand">⚡ Promodoro</div>
+    <nav class="top-nav">
+      <button class="tab active" data-tab="focus">Focus</button>
+      <button class="tab" data-tab="sessions">Sessions</button>
+      <button class="tab" data-tab="analytics">Analytics</button>
+      <button class="tab" data-tab="profile">Profile</button>
+    </nav>
+    <button id="installBtn" class="btn gold hidden">Install App</button>
+  </header>
+
+  <main>
+    <section id="view-focus" class="view active">
+      <div class="card glass timer-card" id="timerCard">
+        <h2>Deep Focus Session</h2>
+        <p class="subtitle">Lock in. No distractions.</p>
+
+        <div class="ring-wrap">
+          <svg class="timer-svg" viewBox="0 0 260 260">
+            <circle class="bg-ring" cx="130" cy="130" r="120"></circle>
+            <circle id="progressRing" class="progress-ring" cx="130" cy="130" r="120"></circle>
+          </svg>
+          <div id="timerText" class="timer-text">25:00</div>
+        </div>
+
+        <div class="timer-controls">
+          <button class="icon-btn" id="minusBtn">-5</button>
+          <button class="btn primary" id="mainBtn">Start</button>
+          <button class="icon-btn" id="plusBtn">+5</button>
+        </div>
+
+        <div class="session-state" id="sessionState">Ready</div>
+      </div>
+
+      <div class="card glass motivation-card">
+        <h3>Motivation</h3>
+        <p id="motivationText">“Small progress daily creates massive results.”</p>
+      </div>
+    </section>
+
+    <section id="view-sessions" class="view">
+      <div class="card glass">
+        <h2>Today's Session Log</h2>
+        <div class="stat-grid">
+          <div class="stat"><span>Today</span><strong id="todayMinutes">0 min</strong></div>
+          <div class="stat"><span>Sessions</span><strong id="todaySessions">0</strong></div>
+          <div class="stat"><span>Goal</span><strong id="todayGoal">0 min</strong></div>
+        </div>
+        <div id="sessionList" class="session-list"></div>
+      </div>
+    </section>
+
+    <section id="view-analytics" class="view">
+      <div class="card glass">
+        <h2>Analytics</h2>
+        <div class="stat-grid">
+          <div class="stat"><span>Streak</span><strong id="streakVal">0 🔥</strong></div>
+          <div class="stat"><span>Yesterday</span><strong id="yesterdayVal">0 min</strong></div>
+          <div class="stat"><span>2 Days Ago</span><strong id="dayBeforeVal">0 min</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-profile" class="view">
+      <div class="card glass">
+        <h2>Profile</h2>
+        <label>Name</label>
+        <input id="nameInput" type="text" placeholder="Your name" />
+
+        <label>Daily Goal (minutes)</label>
+        <input id="goalInput" type="number" min="5" placeholder="60" />
+
+        <div class="toggle-row">
+          <span>Enable Notifications</span>
+          <input id="notifToggle" type="checkbox" />
+        </div>
+        <div class="toggle-row">
+          <span>Enable Sound</span>
+          <input id="soundToggle" type="checkbox" />
+        </div>
+
+        <button class="btn primary" id="saveProfileBtn">Save Profile</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="onboardModal" class="overlay show">
+    <div class="modal glass">
+      <h2>Welcome to Promodoro</h2>
+      <p>Set up your profile to begin.</p>
+      <input id="onbName" type="text" placeholder="Your name" />
+      <input id="onbGoal" type="number" min="5" placeholder="Daily goal (minutes)" />
+      <button id="onboardBtn" class="btn primary">Continue</button>
+    </div>
+  </div>
+
+  <audio id="sfxStart" src="https://assets.mixkit.co/active_storage/sfx/2069/2069-preview.mp3"></audio>
+  <audio id="sfxAlarm" src="https://assets.mixkit.co/active_storage/sfx/995/995-preview.mp3"></audio>
+
+  <script src="app.js"></script>
+</body>
+</html>
